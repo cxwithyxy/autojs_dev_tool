@@ -1,0 +1,9 @@
+{
+  "name": "autojs_dev_tool_server",
+  "version": "0.20200617170733.0",
+  "main": "build/main.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  }
+}
