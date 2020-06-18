@@ -1,5 +1,14 @@
 
 
-import { Server } from "./net/Server"
+// import { Server } from "./net/Server"
 
-new Server().start()
+// new Server().start()
+
+import {FSController} from "./fileSystem/FSController"
+
+
+(async ()=>
+{
+    let fsc = new FSController("./build")
+    console.log(await fsc.dir());
+})()

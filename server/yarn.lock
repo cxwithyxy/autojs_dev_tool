@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@kwsites/file-exists@^1.0.0":
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/@kwsites/file-exists/download/@kwsites/file-exists-1.1.1.tgz#ad1efcac13e1987d8dbaf235ef3be5b0d96faa99"
+  integrity sha1-rR78rBPhmH2NuvI17zvlsNlvqpk=
+  dependencies:
+    debug "^4.1.1"
+
+"@kwsites/math-sum@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/@kwsites/math-sum/download/@kwsites/math-sum-1.0.1.tgz#f498c0896c6033626195bb26b275e63587422a80"
+  integrity sha1-9JjAiWxgM2JhlbsmsnXmNYdCKoA=
+
 "@types/accepts@*":
   version "1.3.5"
   resolved "https://registry.npm.taobao.org/@types/accepts/download/@types/accepts-1.3.5.tgz?cache=0&sync_timestamp=1588200336216&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Faccepts%2Fdownload%2F%40types%2Faccepts-1.3.5.tgz#c34bec115cfc746e04fe5a059df4ce7e7b391575"
@@ -454,6 +466,14 @@ raw-body@^2.3.3:
     http-errors "1.7.3"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+readdir@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/readdir/download/readdir-1.0.2.tgz#770ed83f2369767163d653376ac106141c54e38c"
+  integrity sha1-dw7YPyNpdnFj1lM3asEGFBxU44w=
+  dependencies:
+    "@kwsites/file-exists" "^1.0.0"
+    "@kwsites/math-sum" "^1.0.0"
 
 safe-buffer@5.1.2:
   version "5.1.2"
