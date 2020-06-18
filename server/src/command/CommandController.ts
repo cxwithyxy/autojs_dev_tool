@@ -10,14 +10,27 @@ export class CommandController
         this.commandQueue = []
     }
 
+    toJson()
+    {
+        let returnArray = <Command[]>[]
+        _.forEach(this.commandQueue, (v) =>
+        {
+            returnArray.push(v)
+        })
+        return returnArray
+    }
+
     createCommand(type: string, content: string)
     {
         this.commandQueue.push(new Command(type, content))
     }
 
-    finishCommand(id: number)
+    removeCommand(id: number)
     {
-        this.getCommand(id).setFinish()
+        _.remove(this.commandQueue, (v) =>
+        {
+            return v.id == id
+        })
     }
 
     getCommand(): Command[]

@@ -2,7 +2,6 @@ export class Command
 {
     static idCounter = 0
     type: string
-    state: boolean = false
     content: string
     id: number
 
@@ -13,18 +12,14 @@ export class Command
         this.id = Command.idCounter++
     }
 
+    toJson()
+    {
+        return {id: this.id, content: this.content, type: this.type}
+    }
+
     getId()
     {
         return this.id
     }
-
-    isFinish()
-    {
-        return this.state
-    }
-
-    setFinish()
-    {
-        this.state = true
-    }
+    
 }
