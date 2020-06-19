@@ -10,7 +10,7 @@ let server!: Server
 export function init()
 {
     cmc = new CommandController()
-    fsc = new FSController()
+    fsc = new FSController("build")
     server = new Server()
 }
 
@@ -26,9 +26,20 @@ export function eventInit()
 
     server.on("prestart", r =>
     {
-        r.post("/all", (ctx) =>
+        r.post("/", ctx =>
         {
             ctx.body = JSON.stringify(cmc.toJson())
+        })
+        r.post("/done", ctx =>
+        {
+            let id = ctx.request.body.id
+            if(id)
+            {
+                cmc.removeCommand(id)
+                ctx.body = "1"
+                return
+            }
+            ctx.body = "0"
         })
     })
 }
