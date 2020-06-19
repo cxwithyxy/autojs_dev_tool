@@ -1,5 +1,7 @@
 import {read as readdir } from "readdir";
 import { EventEmitter } from "events";
+import {readFile} from "fs-promise-native"
+import {resolve as pathResolve} from "path"
 
 interface EventMap
 {
@@ -31,6 +33,11 @@ export class FSController
     {
         this.eventC.emit(event, ...argu)
         return this
+    }
+
+    async getFileContent(filepath: string)
+    {
+        return await readFile(pathResolve(this.basePath, filepath))
     }
 
     async dir()

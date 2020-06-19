@@ -41,6 +41,16 @@ export function eventInit()
             }
             ctx.body = "0"
         })
+        r.post("/download", async ctx =>
+        {
+            let filepath = ctx.request.body.filepath
+            if(filepath)
+            {
+                ctx.body = await fsc.getFileContent(filepath)
+                return
+            }
+            ctx.body = ""
+        })
     })
 }
 
