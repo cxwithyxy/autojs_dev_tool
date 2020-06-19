@@ -2,6 +2,8 @@ import {read as readdir } from "readdir";
 import { EventEmitter } from "events";
 import {readFile} from "fs-promise-native"
 import {resolve as pathResolve} from "path"
+// let FileChangeWatcher = require("file-changed")
+import FileChangeWatcher from "file-changed";
 
 interface EventMap
 {
@@ -12,6 +14,7 @@ export class FSController
 {
     basePath: string
     eventC:EventEmitter
+    fileWatcher: any
 
     constructor(basePath?:string)
     {
@@ -19,9 +22,12 @@ export class FSController
         if(!basePath)
         {
             this.basePath = process.cwd()
-            return
         }
-        this.basePath = basePath
+        else
+        {
+            this.basePath = basePath
+        }
+        this.fileWatcher = new FileChangeWatcher()
     }
 
     on<T extends keyof EventMap>(event: T, listener: EventMap[T])
@@ -47,7 +53,8 @@ export class FSController
 
     async start()
     {
-        this.emit("start", await this.dir())
+        let dirList = await this.dir()
+        this.emit("start", dirList)
     }
 
     stop()
