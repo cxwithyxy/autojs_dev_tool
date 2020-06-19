@@ -1,14 +1,10 @@
 
 
-// import { Server } from "./net/Server"
-
-// new Server().start()
-
-import {FSController} from "./fileSystem/FSController"
-
+import * as logicS from "./logicScripts/logic_1";
 
 (async ()=>
 {
-    let fsc = new FSController("./build")
-    console.log(await fsc.dir());
+    logicS.init()
+    logicS.eventInit()
+    logicS.start()
 })()

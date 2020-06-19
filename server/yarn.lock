@@ -452,6 +452,11 @@ path-to-regexp@^6.1.0:
   resolved "https://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-6.1.0.tgz#0b18f88b7a0ce0bfae6a25990c909ab86f512427"
   integrity sha1-Cxj4i3oM4L+uaiWZDJCauG9RJCc=
 
+promise-sleep@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/promise-sleep/download/promise-sleep-1.0.1.tgz#06fdae9da85b077d3b198c265aee4d42e4a59908"
+  integrity sha1-Bv2unahbB307GYwmWu5NQuSlmQg=
+
 qs@^6.5.2:
   version "6.9.4"
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
