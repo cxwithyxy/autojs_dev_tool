@@ -33,6 +33,12 @@ export class Server
     start(port?: number)
     {
         this.emit("prestart", this.router)
+        this.koaApp.use(async (ctx, next) =>
+        {
+            ctx.set("Access-Control-Allow-Origin", "*")
+            ctx.set("Access-Control-Allow-Headers", "X-Requested-With,accept, origin, content-type")
+            await next()
+        })
         this.koaApp.use(bodyParser())
         this.koaApp.use(this.router.routes()).use(this.router.allowedMethods())
         this.koaApp.listen(port ? port : 80)
