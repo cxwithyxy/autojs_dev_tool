@@ -23,6 +23,13 @@ export function eventInit()
             cmc.createCommand("download", v)
         })
     })
+    fsc.on("fileChange", files =>
+    {
+        _.forEach(files, (v) =>
+        {
+            cmc.createCommand("download", v)
+        })
+    })
 
     server.on("prestart", r =>
     {
