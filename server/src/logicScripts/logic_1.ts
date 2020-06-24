@@ -2,6 +2,7 @@ import { CommandController } from "../command/CommandController";
 import { FSController } from "../fileSystem/FSController";
 import { Server } from "../net/Server";
 import _ from "lodash";
+import { address as ipAddress } from "ip";
 
 let cmc!: CommandController
 let fsc!: FSController
@@ -9,8 +10,9 @@ let server!: Server
 
 export function init()
 {
+    console.log(`current ip: ${ipAddress()}`);
     cmc = new CommandController()
-    fsc = new FSController()
+    fsc = new FSController(process.argv[2])
     server = new Server()
 }
 

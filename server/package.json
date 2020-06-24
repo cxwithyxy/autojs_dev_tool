@@ -4,6 +4,7 @@
   "main": "build/main.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/ip": "^1.1.0",
     "@types/koa": "^2.11.3",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.1",
@@ -15,6 +16,7 @@
   "dependencies": {
     "file-changed": "^1.4.1",
     "fs-promise-native": "^2.0.1",
+    "ip": "^1.1.5",
     "koa": "^2.12.1",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^9.0.1",
@@ -28,7 +30,7 @@
   },
   "scripts": {
     "ts_build": "yarn del-cli ./build && yarn tsc",
-    "start": "yarn ts_build && node .",
+    "start": "yarn ts_build && node build/main.js",
     "npm_pack": "yarn ts_build -d && for /F %i in ('npm pack') do ( yarn make-dir ./dist && move %i ./dist/autojsserver.tgz)"
   }
 }
