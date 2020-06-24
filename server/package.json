@@ -1,0 +1,36 @@
+{
+  "name": "autojs_dev_tool_server",
+  "version": "0.20200624172357.0",
+  "main": "build/main.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/ip": "^1.1.0",
+    "@types/koa": "^2.11.3",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-router": "^7.4.1",
+    "@types/lodash": "^4.14.155",
+    "del-cli": "^3.0.1",
+    "make-dir-cli": "^2.0.0",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "file-changed": "^1.4.1",
+    "fs-promise-native": "^2.0.1",
+    "ip": "^1.1.5",
+    "koa": "^2.12.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.0.1",
+    "lodash": "^4.17.15",
+    "promise-sleep": "^1.0.1",
+    "readdir": "^1.0.2",
+    "sleep-promise": "^8.0.1"
+  },
+  "bin": {
+    "autojsserver": "build/main.js"
+  },
+  "scripts": {
+    "ts_build": "yarn del-cli ./build && yarn tsc",
+    "start": "yarn ts_build && node build/main.js",
+    "npm_pack": "yarn ts_build -d && for /F %i in ('npm pack') do ( yarn make-dir ./dist && move %i ./dist/autojsserver.tgz)"
+  }
+}
