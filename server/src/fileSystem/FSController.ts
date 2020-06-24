@@ -1,7 +1,7 @@
 import {read as readdir } from "readdir";
 import { EventEmitter } from "events";
 import {readFile} from "fs-promise-native"
-import {resolve as pathResolve} from "path"
+import {resolve as pathResolve, relative as pathRelative} from "path"
 import FileChangeWatcher from "file-changed";
 import sleep from "sleep-promise";
 import _ from "lodash";
@@ -52,9 +52,23 @@ export class FSController
 
     async dir()
     {
+        return await readdir(this.basePath)
+    }
+
+    dir2RelativePath(dir: string[])
+    {
         let returnDir: string[] = []
-        let pathDir = await readdir(this.basePath)
-        _.each(pathDir, (v) =>
+        _.each(dir, v =>
+        {
+            returnDir.push(pathRelative(this.basePath, v))
+        })
+        return returnDir
+    }
+    
+    dir2AbsolutePath(dir: string[])
+    {
+        let returnDir: string[] = []
+        _.each(dir, (v) =>
         {
             returnDir.push(pathResolve(this.basePath, v))
         })
@@ -64,11 +78,11 @@ export class FSController
     async start()
     {
         this.isWorking = true
-        let dirList = await this.dir()
+        let dirList = this.dir2AbsolutePath(await this.dir())
         this.fileWatcher.addFile(...dirList)
         this.fileWatcher.update();
         
-        this.emit("start", dirList)
+        this.emit("start", this.dir2RelativePath(dirList))
         
         ;(async ()=>
         {
@@ -79,7 +93,10 @@ export class FSController
                     break
                 }
                 let filesChanged = this.fileWatcher.check()
-                this.emit("fileChange", filesChanged)
+                if(filesChanged.length > 0)
+                {
+                    this.emit("fileChange", this.dir2RelativePath(filesChanged))
+                }
                 this.fileWatcher.update();
                 await sleep(1e3)
             }

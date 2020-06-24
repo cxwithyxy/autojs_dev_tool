@@ -4,7 +4,7 @@ declare class FileChangeWatcher
     _dbPath:string
     constructor(dbPath?: string)
     addFile(...files: string[])
-    check(filepath?:string): boolean
+    check(filepath?:string): string[]
     list(): string[]
     update()
 }
