@@ -1,7 +1,6 @@
-console.show()
-console.log("开始")
+let ip = rawInput("请输入服务器ip地址:", "192.168.0.13");
+let hostpath = "http://"+ ip + "/"
 
-let hostpath = "http://192.168.0.13/"
 
 function getCommandList()
 {
@@ -22,28 +21,31 @@ function downloadFile(filepath)
     {
         files.createWithDirs(filepath)
     }
-    console.log(filepath);
-    
     files.write(filepath, fileContent);
 }
 
 function runrunrun()
 {
-    console.log("qingqiuzhong")
-    let fileList = getCommandList()
-    for(let i = 0; i < fileList.length; i++)
+    while(true)
     {
-        let file = fileList[i]
-        let filepath = file.content
-        downloadFile(filepath)
-        finishCommand(file.id)
+        let fileList = getCommandList()
+        for(let i = 0; i < fileList.length; i++)
+        {
+            let file = fileList[i]
+            let filepath = file.content
+            downloadFile(filepath)
+            finishCommand(file.id)
+            console.log("update: " + filepath);
+            
+        }
+        sleep(1e3)
     }
-    console.log("qingqiu END")
-    sleep(1e3)
 }
 
 try
 {
+    console.show()
+    console.log("开始")
     runrunrun()
     console.log("结束");
     
