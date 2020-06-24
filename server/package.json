@@ -1,6 +1,6 @@
 {
   "name": "autojs_dev_tool_server",
-  "version": "0.20200617170733.0",
+  "version": "0.20200624172357.0",
   "main": "build/main.js",
   "license": "MIT",
   "devDependencies": {
