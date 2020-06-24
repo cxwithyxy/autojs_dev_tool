@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 
 import * as logicS from "./logicScripts/logic_1";
 

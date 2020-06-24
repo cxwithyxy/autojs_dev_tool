@@ -8,6 +8,8 @@
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.1",
     "@types/lodash": "^4.14.155",
+    "del-cli": "^3.0.1",
+    "make-dir-cli": "^2.0.0",
     "typescript": "^3.9.5"
   },
   "dependencies": {
@@ -21,7 +23,12 @@
     "readdir": "^1.0.2",
     "sleep-promise": "^8.0.1"
   },
+  "bin": {
+    "autojsserver": "build/main.js"
+  },
   "scripts": {
-    "start": "yarn tsc && node ."
+    "ts_build": "yarn del-cli ./build && yarn tsc",
+    "start": "yarn ts_build && node .",
+    "npm_pack": "yarn ts_build -d && for /F %i in ('npm pack') do ( yarn make-dir ./dist && move %i ./dist/autojsserver.tgz)"
   }
 }

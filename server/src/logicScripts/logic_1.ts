@@ -10,7 +10,7 @@ let server!: Server
 export function init()
 {
     cmc = new CommandController()
-    fsc = new FSController("build")
+    fsc = new FSController()
     server = new Server()
 }
 

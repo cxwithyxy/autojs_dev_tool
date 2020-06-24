@@ -31,6 +31,7 @@ export class FSController
             this.basePath = basePath
         }
         this.fileWatcher = new FileChangeWatcher()
+        console.log(`watching current path: ${this.basePath}`)
         
     }
 
