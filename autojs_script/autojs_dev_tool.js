@@ -16,12 +16,12 @@ function finishCommand(id)
 function downloadFile(filepath)
 {
     let res = http.post(hostpath + "download/", {filepath: filepath})
-    let fileContent = res.body.string()
+    let fileContent = res.body.bytes()
     if(!files.exists(filepath))
     {
         files.createWithDirs(filepath)
     }
-    files.write(filepath, fileContent);
+    files.writeBytes(filepath, fileContent);
 }
 
 function runrunrun()
