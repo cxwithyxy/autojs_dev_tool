@@ -1,7 +1,7 @@
 import {read as readdir } from "readdir";
 import { EventEmitter } from "events";
 import {readFile} from "fs-promise-native"
-import {resolve as pathResolve, relative as pathRelative} from "path"
+import {resolve as pathResolve, relative as pathRelative, posix, win32} from "path"
 import FileChangeWatcher from "file-changed";
 import sleep from "sleep-promise";
 import _ from "lodash";
@@ -61,9 +61,26 @@ export class FSController
         let returnDir: string[] = []
         _.each(dir, v =>
         {
-            returnDir.push(pathRelative(this.basePath, v))
+            returnDir.push(this.pathTransform(pathRelative(this.basePath, v), "toPosix"))
         })
         return returnDir
+    }
+
+    pathTransform(filepath: string, direction:"toWin" | "toPosix")
+    {
+        let returnPath = ""
+        switch(direction)
+        {
+            case "toWin":
+                returnPath = filepath.replace(new RegExp(posix.sep,"g"), win32.sep)
+                break
+            case "toPosix":
+                returnPath = filepath.replace(new RegExp("\\\\","g"), posix.sep)
+                break
+            default:
+                throw new Error(`direction must be "toWin" | "toPosix"`)
+        }
+        return returnPath
     }
     
     dir2AbsolutePath(dir: string[])
@@ -71,7 +88,7 @@ export class FSController
         let returnDir: string[] = []
         _.each(dir, (v) =>
         {
-            returnDir.push(pathResolve(this.basePath, v))
+            returnDir.push(this.pathTransform(pathResolve(this.basePath, v),"toWin"))
         })
         return returnDir
     }
