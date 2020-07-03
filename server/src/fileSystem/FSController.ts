@@ -93,13 +93,23 @@ export class FSController
                 {
                     break
                 }
-                let filesChanged = this.fileWatcher.check()
+                let filesChanged = <string[]>[]
+                let missingFiles = <string[]>[]
+                try
+                {
+                    filesChanged = this.fileWatcher.check()
+                }
+                catch(e)
+                {
+                    console.log((<Error>e).message.split("file: ")[1]);
+                    
+                }
                 if(filesChanged.length > 0)
                 {
                     this.emit("fileChange", this.dir2RelativePath(filesChanged))
                 }
                 this.fileWatcher.update();
-                await sleep(1e3)
+                await sleep(10e3)
             }
         })()
     }
