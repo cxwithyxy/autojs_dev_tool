@@ -15,6 +15,12 @@
 ### 手机端
 
 1. 下载 autojs_dev_tool.js 脚本
+
 2. 运行 autojs_dev_tool.js 脚本
+
 3. 便会自动同步服务器端的 src 文件夹的内容到手机上
+
+## 下载
+
+[下载自发布页](https://github.com/cxwithyxy/autojs_dev_tool/releases/latest)
 
