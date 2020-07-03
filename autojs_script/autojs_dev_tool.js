@@ -28,29 +28,31 @@ function runrunrun()
 {
     while(true)
     {
-        let fileList = getCommandList()
-        for(let i = 0; i < fileList.length; i++)
+        try
         {
-            let file = fileList[i]
-            let filepath = file.content
-            downloadFile(filepath)
-            finishCommand(file.id)
-            console.log("update: " + filepath);
-            
+            let fileList = getCommandList()
+            for(let i = 0; i < fileList.length; i++)
+            {
+                let file = fileList[i]
+                let filepath = file.content
+                downloadFile(filepath)
+                finishCommand(file.id)
+                console.log("update: " + filepath);
+                
+            }
+            sleep(1e3)
         }
-        sleep(1e3)
+        catch(e)
+        {
+            console.log(e)
+            console.log("出错了, 10s后重试")
+            sleep(10e3)
+        }
     }
 }
 
-try
-{
-    console.show()
-    console.log("开始")
-    runrunrun()
-    console.log("结束");
-    
-}catch(e)
-{
-    console.log(e)
-}
 
+
+console.show()
+console.log("启动")
+runrunrun()
